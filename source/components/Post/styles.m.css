@@ -17,6 +17,7 @@
     cursor: pointer;
   }
 
+  & a,
   & time {
     position: absolute;
     left: 60px;
