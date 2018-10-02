@@ -12,12 +12,29 @@ import Styles from './styles.m.css';
 
 export default class Post extends Component {
     static propTypes = {
-        _likePost: func.isRequired,
-        comment:   string.isRequired,
-        created:   number.isRequired,
-        id:        string.isRequired,
-        likes:     array.isRequired,
+
+        _likePost:   func.isRequired,
+        _removePost: func.isRequired,
+        comment:     string.isRequired,
+        created:     number.isRequired,
+        id:          string.isRequired,
+        likes:       array.isRequired,
     };
+
+    constructor () {
+        super();
+
+        this._removePost = this._removePost.bind(this);
+    }
+
+    _removePost () {
+        const { _removePost, id } = this.props;
+
+        console.log(`vivod v componente Post ${id}`);
+
+        _removePost(id);
+    }
+
     render () {
         const { comment, created, _likePost, id, likes } = this.props;
 
@@ -26,7 +43,7 @@ export default class Post extends Component {
                 {
                     (context) => (
                         <section className = { Styles.post }>
-                            <span className = { Styles.cross } />
+                            <span className = { Styles.cross } id = { id } onClick = { this._removePost } />
                             <img src = { context.avatar } />
                             <a>{` ${context.currentUserFirstName} ${context.currentUserLastName} `}</a>
                             <time>
