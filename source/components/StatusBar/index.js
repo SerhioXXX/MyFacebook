@@ -1,6 +1,6 @@
 //Core
 import React, { Component } from 'react';
-import cx from 'classname';
+import cx from 'classnames';
 
 //Components
 import { withProfile } from 'components/HOC/withProfile';
