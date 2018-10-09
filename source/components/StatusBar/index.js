@@ -22,7 +22,7 @@ export default class StatusBar extends Component {
             });
         });
 
-        socket.on('disconect', () => {
+        socket.on('disconnect', () => {
             this.setState({
                 online: false,
             });
@@ -31,7 +31,7 @@ export default class StatusBar extends Component {
 
     componentWillUnmount () {
         socket.removeListener('connect');
-        socket.removeListener('disconect');
+        socket.removeListener('disconnect');
     }
 
     render () {
