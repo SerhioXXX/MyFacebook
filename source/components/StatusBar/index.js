@@ -36,7 +36,7 @@ export default class StatusBar extends Component {
 
     render () {
         const { avatar, currentUserFirstName, currentUserLastName } = this.props;
-        const { online, offline } = this.state;
+        const { online } = this.state;
 
         const statusStyle = cx(Styles.status, {
             [Styles.online]:  online,
@@ -46,7 +46,6 @@ export default class StatusBar extends Component {
         const statusMessage = online ? 'Online' : 'Offline';
 
         console.log('online', online);
-        console.log('offline', offline);
 
         return (
             <section className = { Styles.statusBar }>

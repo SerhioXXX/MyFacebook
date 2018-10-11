@@ -95,19 +95,21 @@ export default class Like extends Component {
       const likersList = this._getLikersList();
       const likesDescription = this._getLikesDescription();
 
-      return (<section className = { Styles.like } >
-          <span className = { likeStyles } onClick = { this._likePost } >
-          Like
-          </span>
-          <div>
-              { likersList }
-              <span
-                  onMouseEnter = { this._showLakers }
-                  onMouseLeave = { this._hideLakers }>
-                  {likesDescription}
+      return (
+          <section className = { Styles.like } >
+              <span className = { likeStyles } onClick = { this._likePost } >
+                Like
               </span>
-          </div>
+              <div>
+                  { likersList }
+                  <span
+                      onMouseEnter = { this._showLakers }
+                      onMouseLeave = { this._hideLakers }>
+                      {likesDescription}
+                  </span>
+              </div>
 
-      </section>);
+          </section>
+      );
   }
 }
