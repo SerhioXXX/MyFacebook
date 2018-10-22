@@ -10,7 +10,6 @@ const Postman = (props) => {
         <section className = { Styles.postman }>
             <img src = { props.avatar } />
             <span>Welcome online, { props.currentUserFirstName }</span>
-
         </section>
     );
 };
