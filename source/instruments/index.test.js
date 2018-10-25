@@ -37,6 +37,7 @@ describe('instrumentsS:', () => {
         expect(typeof getUniqueID()).toBe('string');
         expect(getUniqueID(5)).toHaveLength(5);
         expect(getUniqueID(13)).toHaveLength(13);
+        expect(getUniqueID()).toHaveLength(15);
     });
 
     test('getFullApiUrl should be a function', () => {

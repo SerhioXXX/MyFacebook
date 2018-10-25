@@ -4,7 +4,9 @@ import { mount } from 'enzyme';
 import { Composer } from './';
 
 const props = {
-    _createPost: jest.fn(),
+    _createPost:          jest.fn(),
+    avatar:               'jest.String',
+    currentUserFirstName: 'jest.String',
 };
 
 const comment = 'Merry christmass';
@@ -21,6 +23,7 @@ const result = mount(<Composer { ...props } />);
 
 const _submitCommentSpy = jest.spyOn(result.instance(), '_submitComment');
 const _handleFormSubmitSpy = jest.spyOn(result.instance(), '_handleFormSubmit');
+const _updateCommentSpy = jest.spyOn(result.instance(), '_updateComment');
 
 describe('Composer component:', () => {
     test('shoud have 1 <<section>> element', () => {
@@ -89,5 +92,20 @@ describe('Composer component:', () => {
 
         expect(_submitCommentSpy).toHaveBeenCalledTimes(1);
         expect(_handleFormSubmitSpy).toHaveBeenCalledTimes(1);
+    });
+
+    test('should handle form <<submit>> on presskey Enter event', () => {
+        result.setState({
+            comment,
+        });
+        expect(result.state()).toEqual(updatedState);
+        expect(result.find('textarea').text()).toBe(comment);
+        result.find('textarea').simulate('keypress', { key: 'Enter' });
+        expect(result.state()).toEqual(initialState);
+        expect(result.find('textarea').text()).toBe('');
+    });
+
+    test('_updateComment class methods should be invoked once after form submitted', () => {
+        expect(_updateCommentSpy).toHaveBeenCalledTimes(1);
     });
 });
