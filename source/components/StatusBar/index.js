@@ -42,7 +42,7 @@ export default class StatusBar extends Component {
     };
 
     render () {
-        const { avatar, currentUserFirstName, currentUserLastName } = this.props;
+        const { avatar, currentUserFirstName, currentUserLastName, _logOut } = this.props;
         const { online } = this.state;
 
         const statusStyle = cx(Styles.status, {
@@ -70,6 +70,9 @@ export default class StatusBar extends Component {
                         <span>{ currentUserLastName }</span>
                     </Link>
                     <Link to = '/feed'> Feed </Link>
+                    <button onClick = { _logOut } >
+                        logOut
+                    </button>
                 </section>
             </Transition>
         );
