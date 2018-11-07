@@ -27,17 +27,20 @@ export default class App extends Component {
             isAuthenticated:      false,
             _logOut:              this._logOut,
         };
+        console.log('App -------> constructor');
     }
 
     componentDidMount () {
-
-        this._ls();
+        if (localStorage.getItem('switch') !== null) {
+            this._ls();
+        }
+        console.log('App -------> componentDidMount');
     }
 
      _ls = () => {
 
          this.setState({
-             isAuthenticated: !localStorage.getItem('isAuthenticated'),
+             isAuthenticated: localStorage.getItem('switch') !== 'false',
          });
      };
 
@@ -45,18 +48,20 @@ export default class App extends Component {
         this.setState({
             isAuthenticated: true,
         });
-        localStorage.setItem('isAuthenticated', true);
+        localStorage.setItem('switch', true);
     }
 
     _logOut = () => {
         this.setState({
             isAuthenticated: false,
         });
-        localStorage.setItem('isAuthenticated', false);
+        localStorage.setItem('switch', false);
     }
 
     render () {
         const { isAuthenticated } = this.state;
+
+        console.log('App -------> render', isAuthenticated);
 
         return (
             <Catcher>
@@ -64,8 +69,8 @@ export default class App extends Component {
                     <StatusBar />
                     <Switch>
                         <Route
-                            path = '/login' render = { () => (
-                                <Login _logIn = { this._logIn } />
+                            path = '/login' render = { (props) => (
+                                <Login _logIn = { this._logIn } { ...props } />
                             ) }
                         />
                         { !isAuthenticated && <Redirect to = '/login' />}
