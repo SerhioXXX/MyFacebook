@@ -19,8 +19,6 @@ export default class Login extends Component {
     render () {
         const { currentUserFirstName, currentUserLastName } = this.props;
 
-        console.log('Login -------> this.props', this.props);
-
         return (
             <section className = { Styles.login }>
                 <h1>Login page</h1>
